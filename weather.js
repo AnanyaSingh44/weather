@@ -13,16 +13,17 @@ const weather_body=document.querySelector('.weather-body');
 const url=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
 const weather_data=await fetch(`${url}`).then
 (response=>response.json());
-if(weather_data.cod===404)
+if(weather_data.cod===`404`)
 {
-    location_not_found.computedStyleMap.disply="flex";
-   weather_body.computedStyleMap.display="none";
+    location_not_found.style.display="flex";
+   weather_body.style.display="none";
     console.log("error");
     return;
 }
 
 console.log(weather_data);
-weather_body.computedStyleMap.display="flex";
+location_not_found.style.display="none";
+weather_body.style.display="flex";
 temperature.innerHTML=`${Math.round(weather_data.main.temp-273.15)}°C`;
 humidity.innerHTML=`${weather_data.main.humidity}%` ;
 wind_speed.innerHTML=`${weather_data.wind.speed}Km/Hr`;
